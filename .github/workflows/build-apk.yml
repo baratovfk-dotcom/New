@@ -25,7 +25,14 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Set up Android SDK
+      - name: 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK packages
+        run: |
+          sdkmanager --install "platforms;android-34" "build-tools;34.0.0"
+          
         uses: android-actions/setup-android@v3
 
       - name: Install Android SDK packages
