@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17152e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>PIXEL BEATS</title>
+<style>
+:root{--bg:#17152e;--panel:#242143;--panel2:#302b57;--pink:#ff6bb5;--cyan:#6ef7e8;--yellow:#ffe66d;--white:#f7f4ff;--muted:#aaa5ca}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font-family:ui-monospace,Consolas,monospace;min-height:100vh;background-image:linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px);background-size:20px 20px}
+.app{width:min(760px,100%);margin:auto;padding:22px 16px 40px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}.brand{font-size:clamp(20px,5vw,30px);font-weight:900;letter-spacing:2px;color:var(--cyan);text-shadow:3px 3px 0 #5945a5}.tag{font-size:10px;color:var(--yellow);border:2px solid var(--yellow);padding:6px 8px}
+.panel{background:var(--panel);border:3px solid var(--cyan);box-shadow:6px 6px 0 #0b0a19;padding:18px;margin-bottom:18px}.player{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:center}.cover{aspect-ratio:1;background:#34305e;border:3px solid var(--pink);display:grid;place-items:center;position:relative;overflow:hidden}.cover:before,.cover:after{content:"";position:absolute;width:90px;height:90px;background:var(--pink);opacity:.7;transform:rotate(45deg)}.cover:after{width:60px;height:60px;background:var(--cyan);transform:rotate(45deg) translate(22px,22px)}.pixel-face{z-index:1;font-size:54px;filter:drop-shadow(4px 4px 0 #17152e)}.eyebrow{font-size:10px;letter-spacing:2px;color:var(--pink);margin-bottom:8px}.song{font-size:clamp(17px,4vw,24px);font-weight:900;overflow-wrap:anywhere;margin:0 0 7px}.artist{font-size:12px;color:var(--muted);margin-bottom:20px}.progress-wrap{display:flex;align-items:center;gap:9px;font-size:10px;color:var(--muted)}input[type=range]{accent-color:var(--cyan);min-width:0;width:100%;cursor:pointer}.controls{display:flex;align-items:center;gap:12px;margin-top:17px}.btn{border:2px solid var(--cyan);background:var(--panel2);color:var(--white);font:inherit;cursor:pointer;padding:10px 13px;box-shadow:3px 3px 0 #0b0a19}.btn:hover{transform:translate(-1px,-1px);filter:brightness(1.2)}.btn.main{background:var(--pink);border-color:var(--pink);color:#20152f;font-size:19px;min-width:52px}.volume{display:flex;align-items:center;gap:8px;margin-left:auto;width:120px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.section-head h2{font-size:14px;letter-spacing:1px;margin:0}.upload{font-size:11px;color:var(--cyan);border:2px dashed var(--cyan);padding:9px 11px;cursor:pointer;display:inline-block}.upload input{display:none}.track-list{display:flex;flex-direction:column;gap:7px}.track{display:grid;grid-template-columns:32px 1fr auto;gap:10px;align-items:center;padding:11px;background:#1d1b38;border:2px solid transparent;cursor:pointer}.track.active{border-color:var(--pink);background:#302447}.track-num{color:var(--cyan);font-size:12px}.track-name{font-size:12px;overflow-wrap:anywhere}.track-sub{font-size:10px;color:var(--muted);margin-top:4px}.track-time{font-size:10px;color:var(--muted)}.empty{text-align:center;color:var(--muted);font-size:12px;padding:22px 10px;line-height:1.8}.hint{color:var(--muted);font-size:10px;text-align:center;line-height:1.8}.visualizer{height:34px;display:flex;align-items:center;justify-content:center;gap:4px;margin-top:12px}.bar{width:5px;background:var(--cyan);height:6px;opacity:.8}.playing .bar{animation:jump .55s ease-in-out infinite alternate}.bar:nth-child(3n){animation-delay:.2s}.bar:nth-child(2n){animation-delay:.35s}@keyframes jump{to{height:30px;background:var(--pink)}}@media(max-width:520px){.player{grid-template-columns:100px 1fr;gap:13px}.panel{padding:13px}.controls{gap:7px}.btn{padding:9px}.volume{width:82px}.tag{font-size:9px}}
+</style>
+</head>
+<body>
+<main class="app">
+<header class="top"><div class="brand">▣ PIXEL BEATS</div><div class="tag">8-BIT MUSIC PLAYER</div></header>
+<section class="panel">
+ <div class="player">
+  <div class="cover"><div class="pixel-face">♫</div></div>
+  <div><div class="eyebrow">NOW PLAYING / 001</div><h1 class="song" id="songTitle">Выбери свой трек</h1><div class="artist" id="artist">Добавь музыку с устройства</div>
+   <div class="progress-wrap"><span id="currentTime">0:00</span><input id="seek" type="range" min="0" max="100" value="0"><span id="duration">0:00</span></div>
+   <div class="visualizer" id="visualizer"><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i></div>
+  </div>
+ </div>
+ <div class="controls"><button class="btn" id="prev" aria-label="Предыдущий">|◀</button><button class="btn main" id="play" aria-label="Играть">▶</button><button class="btn" id="next" aria-label="Следующий">▶|</button><button class="btn" id="shuffle" title="Случайный порядок">⤨</button><label class="volume">🔊 <input id="volume" type="range" min="0" max="1" step=".01" value=".8"></label></div>
+</section>
+<section class="panel">
+ <div class="section-head"><h2>▸ МОЯ КОЛЛЕКЦИЯ</h2><label class="upload">＋ ДОБАВИТЬ MP3<input id="files" type="file" accept="audio/*" multiple></label></div>
+ <div id="trackList" class="track-list"><div class="empty">♫ Твоя плейлист пока пустой.<br>Нажми «ДОБАВИТЬ MP3» и выбери аудиофайлы.</div></div>
+</section>
+<p class="hint">PIXEL BEATS v1.0<br>Музыка воспроизводится прямо на устройстве · файлы никуда не загружаются</p>
+<audio id="audio" preload="metadata" playsinline></audio>
+</main>
+<script>
+const $=id=>document.getElementById(id), audio=$('audio');
+let tracks=[], index=-1, shuffle=false;
+const fmt=n=>{if(!Number.isFinite(n))return'0:00';let m=Math.floor(n/60),s=Math.floor(n%60);return m+':'+String(s).padStart(2,'0')};
+function render(){const list=$('trackList');if(!tracks.length){list.innerHTML='<div class="empty">♫ Твоя плейлист пока пустой.<br>Нажми «ДОБАВИТЬ MP3» и выбери аудиофайлы.</div>';return}
+list.innerHTML='';tracks.forEach((t,i)=>{let row=document.createElement('div');row.className='track'+(i===index?' active':'');row.innerHTML=`<span class="track-num">${String(i+1).padStart(2,'0')}</span><div><div class="track-name"></div><div class="track-sub">LOCAL TRACK</div></div><span class="track-time">${t.duration?fmt(t.duration):'♫'}</span>`;row.querySelector('.track-name').textContent=t.name;row.onclick=()=>load(i,true);list.appendChild(row)})}
+function load(i,autoplay=false){if(!tracks.length)return;index=(i+tracks.length)%tracks.length;audio.src=tracks[index].url;$('songTitle').textContent=tracks[index].name;$('artist').textContent='LOCAL FILE  /  PIXEL BEATS';document.title=tracks[index].name+' — PIXEL BEATS';$('seek').value=0;render();updateMediaSession();if(autoplay)audio.play().catch(()=>{});updatePlay()}
+function updatePlay(){let p=!audio.paused;$('play').textContent=p?'Ⅱ':'▶';$('visualizer').classList.toggle('playing',p);if('mediaSession' in navigator)navigator.mediaSession.playbackState=p?'playing':'paused'}
+// Интеграция с системным медиаплеером: экран блокировки и панель уведомлений Android.
+function updateMediaSession(){if(!('mediaSession' in navigator)||index<0)return;try{navigator.mediaSession.metadata=new MediaMetadata({title:tracks[index].name,artist:'PIXEL BEATS',album:'LOCAL MUSIC'})}catch(e){};try{navigator.mediaSession.setPositionState({duration:Number.isFinite(audio.duration)?audio.duration:0,playbackRate:audio.playbackRate,position:audio.currentTime||0})}catch(e){}}
+if('mediaSession' in navigator){navigator.mediaSession.setActionHandler('play',()=>audio.play().catch(()=>{}));navigator.mediaSession.setActionHandler('pause',()=>audio.pause());navigator.mediaSession.setActionHandler('previoustrack',()=>{if(audio.currentTime>3)audio.currentTime=0;else $('prev').click()});navigator.mediaSession.setActionHandler('nexttrack',()=>next());navigator.mediaSession.setActionHandler('seekbackward',d=>{audio.currentTime=Math.max(0,audio.currentTime-(d.seekOffset||10))});navigator.mediaSession.setActionHandler('seekforward',d=>{audio.currentTime=Math.min(audio.duration||Infinity,audio.currentTime+(d.seekOffset||10))});navigator.mediaSession.setActionHandler('seekto',d=>{if(d.seekTime!=null)audio.currentTime=d.seekTime})}
+$('files').addEventListener('change',e=>{const added=[...e.target.files].map(f=>({name:f.name.replace(/\.[^.]+$/,''),file:f,url:URL.createObjectURL(f),duration:0}));tracks.push(...added);render();if(index<0&&tracks.length)load(0);e.target.value=''});
+audio.addEventListener('loadedmetadata',()=>{if(index>=0){tracks[index].duration=audio.duration;$('duration').textContent=fmt(audio.duration);render()}});
+audio.addEventListener('timeupdate',()=>{$('currentTime').textContent=fmt(audio.currentTime);$('seek').value=audio.duration?audio.currentTime/audio.duration*100:0;if('mediaSession' in navigator&&audio.duration){try{navigator.mediaSession.setPositionState({duration:audio.duration,playbackRate:audio.playbackRate,position:audio.currentTime})}catch(e){}}});
+audio.addEventListener('play',updatePlay);audio.addEventListener('pause',updatePlay);
+audio.addEventListener('ended',()=>next());
+$('play').onclick=()=>{if(index<0){if(tracks.length)load(0,true);return}if(audio.paused)audio.play().catch(()=>{});else audio.pause()};
+function next(){if(!tracks.length)return;let i=shuffle?Math.floor(Math.random()*tracks.length):index+1;if(i>=tracks.length)i=0;load(i,true)}
+$('next').onclick=next;$('prev').onclick=()=>{if(audio.currentTime>3){audio.currentTime=0}else load(index-1,true)};
+$('shuffle').onclick=()=>{shuffle=!shuffle;$('shuffle').style.color=shuffle?'var(--yellow)':'var(--white)'};
+$('seek').oninput=e=>{if(audio.duration)audio.currentTime=Number(e.target.value)/100*audio.duration};
+$('volume').oninput=e=>audio.volume=Number(e.target.value);audio.volume=.8;
+</script>
+</body></html>

@@ -1,0 +1,17 @@
+{
+  "name": "pixel-beats-android",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PIXEL BEATS Android app",
+  "scripts": {
+    "build:web": "node -e \"const fs=require('fs');fs.mkdirSync('www',{recursive:true});fs.copyFileSync('index.html','www/index.html');\"",
+    "build:android": "npm run build:web && cap add android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/core": "^7.4.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.3"
+  }
+}

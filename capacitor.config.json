@@ -1,0 +1,8 @@
+{
+  "appId": "com.baratovfk.pixelbeats",
+  "appName": "PIXEL BEATS",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
